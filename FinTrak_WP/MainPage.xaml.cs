@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using FinTrak_WP.Resources;
 
+using FinTrak.Asset;
+
 namespace FinTrak_WP
 {
     public partial class MainPage : PhoneApplicationPage
@@ -17,25 +19,58 @@ namespace FinTrak_WP
         public MainPage()
         {
             InitializeComponent();
-
-            // Beispielcode zur Lokalisierung der ApplicationBar
-            //BuildLocalizedApplicationBar();
+            AddTestData();
         }
 
-        // Beispielcode zur Erstellung einer lokalisierten ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // ApplicationBar der Seite einer neuen Instanz von ApplicationBar zuweisen
-        //    ApplicationBar = new ApplicationBar();
+        void AddTestData()
+        {
+            AssetCollection assetCollection = new AssetCollection();
 
-        //    // Eine neue Schaltfläche erstellen und als Text die lokalisierte Zeichenfolge aus AppResources zuweisen.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
+            assetCollection.Add(new AssetModel
+            {
+                Title = "Dud",
+                TypeId = AssetType.Cash,
+                CurrentBalance = 24.66f,
+            });
 
-        //    // Ein neues Menüelement mit der lokalisierten Zeichenfolge aus AppResources erstellen
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+            assetCollection.Add(new AssetModel
+            {
+                Title = "Dede",
+                TypeId = AssetType.Account,
+                CurrentBalance = -4.37f,
+            });
+
+            assetCollection.Add(new AssetModel
+            {
+                Title = "Ha ho",
+                TypeId = AssetType.CashSavings,
+                CurrentBalance = 224.98f,
+            });
+
+            assetCollection.Add(new AssetModel
+            {
+                Title = "Dörd",
+                TypeId = AssetType.CashSavings,
+                CurrentBalance = 25.46f,
+            });
+
+            assetCollection.Add(new AssetModel
+            {
+                Title = "Hsd",
+                TypeId = AssetType.Prepaid,
+                CurrentBalance = 48.40f,
+            });
+
+            var assetView = new View.AssetsView();
+            assetView.DataContext = assetCollection;
+            // uiRoot_pivot_assets_content.Content = assetView;
+            uiRoot_pivot_assets.Content = assetView;
+        }
+
+        private void add_Click(object sender, EventArgs e) { }
+
+        private void save_Click(object sender, EventArgs e) { }
+
+        private void clear_Click(object sender, EventArgs e) { }
     }
 }

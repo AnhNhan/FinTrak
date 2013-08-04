@@ -3,10 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--Anwendungsressourcen-->
     <Application.Resources>
+        <sys:String x:Key="ApplicationTitle">FIN TRAK</sys:String>
         <local:LocalizedStrings xmlns:local="clr-namespace:FinTrak_WP" x:Key="LocalizedStrings"/>
     </Application.Resources>
 

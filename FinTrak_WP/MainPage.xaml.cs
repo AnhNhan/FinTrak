@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using FinTrak_WP.Resources;
 
+using FinTrak;
 using FinTrak.Asset;
 using FinTrak.Budget;
 using FinTrak.Subject;
@@ -18,7 +19,11 @@ namespace FinTrak_WP
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private static bool _dataLoaded = false;
+
         private List<ApplicationBarIconButton> AppBarButtons;
+
+        private FinTrakDatabaseRepository dbRepo = new FinTrakDatabaseRepository();
 
         public static AssetCollection Assets { get; private set; }
         public static TransactionCollection Transactions { get; private set; }
@@ -28,16 +33,34 @@ namespace FinTrak_WP
         {
             InitializeComponent();
             AppBarButtons = new List<ApplicationBarIconButton>();
-            Assets = new AssetCollection();
-            Transactions = new TransactionCollection();
-            AddTestData();
+            if (!_dataLoaded)
+            {
+                this.Loaded += InitializeData;
+            }
         }
 
-        void AddTestData()
+        async void InitializeData(object sender, RoutedEventArgs e)
         {
+            await dbRepo.Initialize();
+
+            InitializeAssets();
+
+            _dataLoaded = true;
+            this.Loaded -= InitializeData;
+        }
+
+        void InitializeAssets()
+        {
+            Assets = new AssetCollection(dbRepo.LoadAssets());
+
             var assetView = new View.AssetsView();
             assetView.DataContext = Assets;
             uiRoot_pivot_assets.Content = assetView;
+
+            Assets.CollectionChanged += (s1, e1) =>
+            {
+                dbRepo.SaveAssets(Assets.ToList());
+            };
         }
 
         private void add_Click(object sender, EventArgs e) { }

@@ -13,26 +13,21 @@ using FinTrak.Transaction;
 namespace FinTrak.Asset
 {
     [Table]
-    [Index(Columns = "_id")]
+    [Index(Columns = "Id")]
     public class AssetModel : INotifyPropertyChanged, ITransactionTarget
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         private uint _id;
-        [Column]
         private string _title;
-        [Column]
         private AssetType _typeId;
         // Just for caching
-        [Column]
         private float _currentBalance = 0.0f;
         // Just for caching
-        [Column]
         private int _numTransactions = 0;
-        [Column]
         private DateTime _dateCreated = DateTime.Now;
 
         #region properties
 
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public uint Id
         {
             get { return _id; }
@@ -43,6 +38,7 @@ namespace FinTrak.Asset
             }
         }
 
+        [Column]
         public string Title
         {
             get
@@ -61,6 +57,7 @@ namespace FinTrak.Asset
             }
         }
 
+        [Column]
         public AssetType TypeId
         {
             get
@@ -73,7 +70,6 @@ namespace FinTrak.Asset
                 NotifyPropertyChanged("TypeId");
             }
         }
-
         public string Type
         {
             get
@@ -82,6 +78,7 @@ namespace FinTrak.Asset
             }
         }
 
+        [Column]
         public float CurrentBalance
         {
             get
@@ -95,6 +92,7 @@ namespace FinTrak.Asset
             }
         }
 
+        [Column]
         public int NumTransactions
         {
             get
@@ -108,6 +106,7 @@ namespace FinTrak.Asset
             }
         }
 
+        [Column]
         public DateTime DateCreated
         {
             get

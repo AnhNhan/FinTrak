@@ -13,20 +13,17 @@ using FinTrak.Transaction;
 namespace FinTrak.Budget
 {
     [Table]
-    [Index(Columns = "_id")]
+    [Index(Columns = "Id")]
     public class BudgetModel : INotifyPropertyChanged
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         private uint _id;
-        [Column]
         private string _name;
-        [Column]
         private float _alloc;
-        [Column]
         private float _spent;
 
         #region properties
 
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public uint Id
         {
             get { return _id; }
@@ -37,6 +34,7 @@ namespace FinTrak.Budget
             }
         }
 
+        [Column]
         public string Name
         {
             get
@@ -55,6 +53,7 @@ namespace FinTrak.Budget
             }
         }
 
+        [Column]
         public float AllocatedAmount
         {
             get { return _alloc; }
@@ -69,6 +68,7 @@ namespace FinTrak.Budget
             }
         }
 
+        [Column]
         public float SpentAmount
         {
             get { return _spent; }
@@ -85,7 +85,7 @@ namespace FinTrak.Budget
 
         #endregion
 
-        public List<TransactionModel> Transactions;
+        public List<TransactionModel> Transactions = new List<TransactionModel>();
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)

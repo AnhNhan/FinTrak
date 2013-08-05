@@ -14,28 +14,22 @@ using FinTrak.Subject;
 namespace FinTrak.Transaction
 {
     [Table]
-    [Index(Columns = "_id")]
+    [Index(Columns = "Id")]
     public class TransactionModel : INotifyPropertyChanged
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         private uint _id;
-        [Column]
+        private string _label;
         private float _amount;
-        [Column]
         private uint _originId;
-        [Column]
         private bool _originIsAsset;
-        [Column]
         private uint _targetId;
-        [Column]
         private bool _targetIsAsset;
-        [Column]
         private DateTime _transactionDate;
-        [Column]
         private DateTime _valueDate;
 
         #region properties
 
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public uint Id
         {
             get { return _id; }
@@ -46,16 +40,23 @@ namespace FinTrak.Transaction
             }
         }
 
-        public uint AssetId
+        [Column]
+        public string Label
         {
-            get { return _assetId; }
-            private set
+            get { return _label; }
+            set
             {
-                _assetId = value;
-                NotifyPropertyChanged("AssetId");
+                value.Trim();
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException();
+                }
+                _label = value;
+                NotifyPropertyChanged("Label");
             }
         }
 
+        [Column]
         public float Amount
         {
             get { return _amount; }
@@ -70,6 +71,7 @@ namespace FinTrak.Transaction
             }
         }
 
+        [Column]
         public uint OriginId
         {
             get { return _originId; }
@@ -81,6 +83,7 @@ namespace FinTrak.Transaction
             }
         }
 
+        [Column]
         public uint TargetId
         {
             get { return _targetId; }
@@ -92,6 +95,7 @@ namespace FinTrak.Transaction
             }
         }
 
+        [Column]
         public bool OriginIsAsset
         {
             get { return _originIsAsset; }
@@ -102,6 +106,7 @@ namespace FinTrak.Transaction
             }
         }
 
+        [Column]
         public bool TargetIsAsset
         {
             get { return _targetIsAsset; }
@@ -112,6 +117,7 @@ namespace FinTrak.Transaction
             }
         }
 
+        [Column]
         public DateTime TransactionDate
         {
             get { return _transactionDate; }
@@ -122,6 +128,7 @@ namespace FinTrak.Transaction
             }
         }
 
+        [Column]
         public DateTime ValueDate
         {
             get { return _valueDate; }
@@ -133,8 +140,6 @@ namespace FinTrak.Transaction
         }
 
         #endregion
-
-        public bool IsDeduction { get { return _amount < 0.0f; } }
 
         public string AmountColor
         {

@@ -13,26 +13,20 @@ using FinTrak.Transaction;
 namespace FinTrak.Subject
 {
     [Table]
-    [Index(Columns="_id")]
+    [Index(Columns="Id")]
     public class SubjectModel : INotifyPropertyChanged, ITransactionTarget
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         private uint _id;
-        [Column]
         private string _name;
-        [Column]
-        private string _title;
-        [Column]
+        private string _label;
         private string _type;
-        [Column(CanBeNull = true)]
         private string _phone;
-        [Column(CanBeNull = true)]
         private string _email;
-        [Column]
         private DateTime _dateCreated;
 
         #region properties
 
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public uint Id
         {
             get { return _id; }
@@ -43,6 +37,7 @@ namespace FinTrak.Subject
             }
         }
 
+        [Column]
         public string Name
         {
             get
@@ -61,11 +56,12 @@ namespace FinTrak.Subject
             }
         }
 
-        public string Title
+        [Column]
+        public string Label
         {
             get
             {
-                return _title;
+                return _label;
             }
             set
             {
@@ -74,11 +70,12 @@ namespace FinTrak.Subject
                 {
                     throw new ArgumentException();
                 }
-                _title = value;
+                _label = value;
                 NotifyPropertyChanged("Title");
             }
         }
 
+        [Column]
         public string Type
         {
             get
@@ -97,6 +94,7 @@ namespace FinTrak.Subject
             }
         }
 
+        [Column(CanBeNull = true)]
         public string Phone
         {
             get
@@ -115,6 +113,7 @@ namespace FinTrak.Subject
             }
         }
 
+        [Column(CanBeNull = true)]
         public string Email
         {
             get
@@ -133,6 +132,7 @@ namespace FinTrak.Subject
             }
         }
 
+        [Column]
         public DateTime DateCreated
         {
             get
@@ -150,7 +150,7 @@ namespace FinTrak.Subject
 
         #region interface
 
-        public string ITLabel { get { return _title; } }
+        public string ITLabel { get { return Label; } }
 
         public string ITType { get { return Type; } }
 

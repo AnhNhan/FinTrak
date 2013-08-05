@@ -20,8 +20,6 @@ namespace FinTrak.Transaction
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         private uint _id;
         [Column]
-        private uint _assetId;
-        [Column]
         private float _amount;
         [Column]
         private uint _originId;
@@ -153,23 +151,6 @@ namespace FinTrak.Transaction
             }
         }
 
-        private AssetModel _asset;
-        public AssetModel Asset
-        {
-            get
-            {
-                return _asset;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException();
-                }
-                _asset = value;
-                AssetId = value.Id;
-            }
-        }
         private ITransactionTarget _origin;
         public ITransactionTarget Origin
         {
@@ -186,6 +167,7 @@ namespace FinTrak.Transaction
                 _origin = value;
                 _originId = value.Id;
                 _originIsAsset = value.GetType().ToString() == "FinTrak.Asset.AssetModel";
+                NotifyPropertyChanged("Origin");
             }
         }
         private ITransactionTarget _target;
@@ -204,6 +186,7 @@ namespace FinTrak.Transaction
                 _target = value;
                 _targetId = value.Id;
                 _targetIsAsset = value.GetType().ToString() == "FinTrak.Asset.AssetModel";
+                NotifyPropertyChanged("Target");
             }
         }
 

@@ -166,13 +166,13 @@ namespace FinTrak.Asset
             }
         }
 
+        // Unused, we populate it from time to time, but it is incomplete in general
         public List<TransactionModel> Transactions { get; set; }
 
         public void AddTransaction(TransactionModel transaction, bool isOrigin = true)
         {
             Transactions.Add(transaction);
             NumTransactions += 1;
-            transaction.Asset = this;
 
             if (isOrigin)
             {

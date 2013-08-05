@@ -29,7 +29,7 @@ namespace FinTrak.Asset
         [Column]
         private int _numTransactions = 0;
         [Column]
-        private DateTime _dateCreated;
+        private DateTime _dateCreated = DateTime.Now;
 
         #region properties
 
@@ -171,16 +171,17 @@ namespace FinTrak.Asset
         public void AddTransaction(TransactionModel transaction, bool isOrigin = true)
         {
             Transactions.Add(transaction);
-            CurrentBalance += transaction.Amount;
             NumTransactions += 1;
             transaction.Asset = this;
 
             if (isOrigin)
             {
+                CurrentBalance -= transaction.Amount;
                 transaction.Origin = this;
             }
             else
             {
+                CurrentBalance += transaction.Amount;
                 transaction.Target = this;
             }
         }

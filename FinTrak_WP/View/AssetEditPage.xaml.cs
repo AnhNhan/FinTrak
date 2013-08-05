@@ -15,6 +15,7 @@ namespace FinTrak_WP.View
     public partial class AssetEditPage : PhoneApplicationPage
     {
         private AssetModel asset;
+        private bool _didNotExist = false;
 
         public AssetEditPage()
         {
@@ -43,6 +44,7 @@ namespace FinTrak_WP.View
             {
                 uint assetId = uint.Parse(NavigationContext.QueryString["assetId"]);
                 asset = MainPage.Assets.Where(_asset => _asset.Id == assetId).First();
+                _didNotExist = true;
             }
         }
 
@@ -53,8 +55,7 @@ namespace FinTrak_WP.View
 
         private void save_Click(object sender, EventArgs e)
         {
-            bool didNotExist = asset == null;
-            if (didNotExist)
+            if (_didNotExist)
             {
                 asset = new AssetModel();
             }
@@ -98,7 +99,7 @@ namespace FinTrak_WP.View
             asset.Title = name;
             asset.TypeId = _typeId;
 
-            if (didNotExist)
+            if (_didNotExist)
             {
                 MainPage.Assets.Add(asset);
             }

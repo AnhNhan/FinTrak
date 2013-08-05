@@ -43,7 +43,6 @@ namespace FinTrak
                                                                                          orderby transaction.TransactionDate
                                                                                          select transaction);
             queryTransactionsFromAsset = CompiledQuery.Compile((FinTrakDataContext context, int assetId) => from transaction in db.Transactions
-                                                                                                            where transaction.AssetId == assetId
                                                                                                             orderby transaction.TransactionDate
                                                                                                             select transaction);
         }

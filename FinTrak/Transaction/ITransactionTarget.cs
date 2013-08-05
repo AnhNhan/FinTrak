@@ -10,10 +10,7 @@ namespace FinTrak.Transaction
     {
         uint Id { get; set; }
 
-        string GetName();
-
-        string GetTitle();
-
-        string GetTypeName();
+        string ITLabel { get; }
+        string ITType { get; }
     }
 }

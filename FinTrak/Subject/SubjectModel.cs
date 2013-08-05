@@ -150,20 +150,9 @@ namespace FinTrak.Subject
 
         #region interface
 
-        public string GetName()
-        {
-            return Name;
-        }
+        public string ITLabel { get { return _title; } }
 
-        public string GetTitle()
-        {
-            return Title;
-        }
-
-        public string GetTypeName()
-        {
-            return Type;
-        }
+        public string ITType { get { return Type; } }
 
         #endregion
 

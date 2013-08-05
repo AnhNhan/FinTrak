@@ -167,7 +167,7 @@ namespace FinTrak.Asset
         }
 
         // Unused, we populate it from time to time, but it is incomplete in general
-        public List<TransactionModel> Transactions { get; set; }
+        public List<TransactionModel> Transactions = new List<TransactionModel>();
 
         public void AddTransaction(TransactionModel transaction, bool isOrigin = true)
         {
@@ -197,20 +197,9 @@ namespace FinTrak.Asset
 
         #region interface
 
-        public string GetName()
-        {
-            return _title;
-        }
+        public string ITLabel { get { return _title; } }
 
-        public string GetTitle()
-        {
-            throw new NotImplementedException();
-        }
-
-        public new string GetType()
-        {
-            throw new NotImplementedException();
-        }
+        public string ITType { get { return GetTypeName(); } }
 
         #endregion
     }

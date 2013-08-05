@@ -13,6 +13,7 @@ namespace FinTrak.Transaction
     public class TransactionCollection : ObservableCollection<TransactionModel>
     {
         public TransactionCollection() : base() { }
+        public TransactionCollection(List<TransactionModel> transactions) : base(transactions) { }
 
         // for now, usused
         public AssetCollection AssetCollection { get; set; }

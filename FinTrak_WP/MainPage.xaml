@@ -36,16 +36,12 @@
             </phone:PivotItem>
 
             <phone:PivotItem x:Name="uiRoot_pivot_assets" Header="assets" Margin="12,0">
-                <Grid>
-                </Grid>
             </phone:PivotItem>
 
             <phone:PivotItem x:Name="uiRoot_pivot_transactions" Header="transactions" Margin="12,0">
-                <Grid/>
             </phone:PivotItem>
 
             <phone:PivotItem x:Name="uiRoot_pivot_budgets" Header="budgets" Margin="12,0">
-                <Grid/>
             </phone:PivotItem>
 
             <phone:PivotItem x:Name="uiRoot_pivot_analytics" Header="analytics" Margin="12,0">

@@ -84,7 +84,7 @@ namespace FinTrak_WP
 
         private void AddAsset_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/AssetEditPanel.xaml", UriKind.RelativeOrAbsolute));
+            NavigationService.Navigate(new Uri("/View/AssetEditPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void uiRoot_pivot_LoadedPivotItem(object sender, PivotItemEventArgs e)

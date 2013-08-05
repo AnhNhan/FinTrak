@@ -138,6 +138,20 @@ namespace FinTrak.Transaction
 
         public bool IsDeduction { get { return _amount < 0.0f; } }
 
+        public string AmountColor
+        {
+            get
+            {
+                if (Amount < 0.0f)
+                {
+                    return "Red";
+                }
+                else
+                {
+                    return "Green";
+                }
+            }
+        }
 
         private AssetModel _asset;
         public AssetModel Asset

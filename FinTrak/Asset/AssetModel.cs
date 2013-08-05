@@ -125,6 +125,11 @@ namespace FinTrak.Asset
 
         public string GetTypeName()
         {
+            return GetTypeNameForAssetTypeId(TypeId);
+        }
+
+        public static string GetTypeNameForAssetTypeId(AssetType TypeId)
+        {
             switch (TypeId)
             {
                 case AssetType.Account:
@@ -143,6 +148,21 @@ namespace FinTrak.Asset
                     return "Prepaid account/card";
                 default:
                     return "unknown";
+            }
+        }
+
+        public string BalanceColor
+        {
+            get
+            {
+                if (CurrentBalance < 0.0f)
+                {
+                    return "Red";
+                }
+                else
+                {
+                    return "Green";
+                }
             }
         }
 

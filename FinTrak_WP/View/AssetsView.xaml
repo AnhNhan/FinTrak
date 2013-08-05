@@ -1,0 +1,47 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" x:Class="FinTrak_WP.View.AssetsView"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot">
+
+        <ListBox ItemsSource="{Binding BindsDirectlyToSource=True}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel VerticalAlignment="Top" Margin="{StaticResource PhoneTouchTargetOverhang}" MinWidth="432">
+                        <Grid>
+                            <TextBlock
+                                Text="{Binding CurrentBalance,Mode=OneWay}"
+                                Margin="0,2,2,2"
+                                HorizontalAlignment="Right"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Foreground="{Binding BalanceColor}"
+                                FontFamily="{StaticResource PhoneFontFamilyBold}"/>
+                            <TextBlock
+                                Text="{Binding Title,Mode=OneWay}"
+                                Margin="0,2,2,2"
+                                Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                Grid.Column="0"/>
+                        </Grid>
+
+                        <TextBlock
+                            Text="{Binding Type,Mode=OneWay}"
+                            Style="{StaticResource PhoneTextAccentStyle}"
+                            Margin="0,2,2,2"
+                            toolkit:SlideInEffect.LineIndex="1"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</UserControl>

@@ -16,42 +16,57 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel VerticalAlignment="Top" Margin="{StaticResource PhoneTouchTargetOverhang}" MinWidth="432">
-                        <TextBlock
-                            Text="{Binding Amount,Mode=OneWay}"
-                            Margin="0,2,2,2"
-                            HorizontalAlignment="Right"
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            Foreground="{Binding AmountColor}"
-                            FontFamily="{StaticResource PhoneFontFamilyBold}"/>
-                        <TextBlock
-                            Text="{Binding Label,Mode=OneWay}"
-                            Margin="0,2,2,2"
-                            Style="{StaticResource PhoneTextExtraLargeStyle}"
-                            Grid.Column="0"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock
+                                Text="{Binding Amount,Mode=OneWay}"
+                                Margin="0,2,2,2"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Foreground="{Binding AmountColor}"
+                                FontFamily="{StaticResource PhoneFontFamilyBold}"
+                                Grid.Column="1" Grid.Row="0"/>
+                            <TextBlock
+                                Text="{Binding Label,Mode=OneWay}"
+                                Margin="0,2,2,2"
+                                Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                Grid.Column="0" Grid.Row="0"/>
 
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                Text="{Binding Origin.ITLabel}"
-                                Style="{StaticResource PhoneTextSmallStyle}"
-                                Margin="0,2,2,2"
-                                toolkit:SlideInEffect.LineIndex="1" />
-                            <TextBlock
-                                Text=" - "
-                                Margin="0,2,2,2"
-                                toolkit:SlideInEffect.LineIndex="1" />
-                            <TextBlock
-                                Text="{Binding Target.ITLabel}"
-                                Style="{StaticResource PhoneTextSmallStyle}"
-                                Margin="0,2,2,2"
-                                toolkit:SlideInEffect.LineIndex="1" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" toolkit:SlideInEffect.LineIndex="1">
+                                <TextBlock
+                                    Text="From "
+                                    Style="{StaticResource PhoneTextNormalStyle}"
+                                    Margin="0,2,2,2"/>
+                                <TextBlock
+                                    Text="{Binding Origin.ITLabel}"
+                                    Style="{StaticResource PhoneTextAccentStyle}"
+                                    Margin="0,2,2,2"/>
+                                <TextBlock
+                                    Text=" to "
+                                    Style="{StaticResource PhoneTextNormalStyle}"
+                                    Margin="0,2,2,2"/>
+                                <TextBlock
+                                    Text="{Binding Target.ITLabel}"
+                                    Style="{StaticResource PhoneTextAccentStyle}"
+                                    Margin="0,2,2,2"/>
+                            </StackPanel>
                         
-                        <TextBlock
-                            Text="{Binding TransactionDate, StringFormat=\{0:D\}}"
-                            Style="{StaticResource PhoneTextAccentStyle}"
-                            Margin="0,2,2,2"
-                            toolkit:SlideInEffect.LineIndex="2"/>
+                            <TextBlock
+                                Text="{Binding TransactionDate, StringFormat=\{0:d\}}"
+                                Style="{StaticResource PhoneTextNormalStyle}"
+                                Margin="0,2,2,2"
+                                toolkit:SlideInEffect.LineIndex="2"
+                                HorizontalAlignment="Right"
+                                Grid.Column="1" Grid.Row="1"/>
+                        </Grid>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

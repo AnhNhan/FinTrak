@@ -39,11 +39,14 @@ namespace FinTrak_WP
             }
         }
 
+        #region data stuff
+
         async void InitializeData(object sender, RoutedEventArgs e)
         {
             await dbRepo.Initialize();
 
             InitializeAssets();
+            InitializeTransactions();
 
             _dataLoaded = true;
             this.Loaded -= InitializeData;
@@ -52,6 +55,36 @@ namespace FinTrak_WP
         void InitializeAssets()
         {
             Assets = new AssetCollection(dbRepo.LoadAssets());
+
+            Assets.Add(new AssetModel
+            {
+                Title = "Dud",
+                TypeId = AssetType.Cash,
+            });
+
+            Assets.Add(new AssetModel
+            {
+                Title = "Dede",
+                TypeId = AssetType.Account,
+            });
+
+            Assets.Add(new AssetModel
+            {
+                Title = "Ha ho",
+                TypeId = AssetType.CashSavings,
+            });
+
+            Assets.Add(new AssetModel
+            {
+                Title = "Dörd",
+                TypeId = AssetType.CashSavings,
+            });
+
+            Assets.Add(new AssetModel
+            {
+                Title = "Hsd",
+                TypeId = AssetType.Prepaid,
+            });
 
             var assetView = new View.AssetsView();
             assetView.DataContext = Assets;
@@ -63,11 +96,42 @@ namespace FinTrak_WP
             };
         }
 
-        private void add_Click(object sender, EventArgs e) { }
+        void InitializeTransactions()
+        {
+            Transactions = new TransactionCollection(dbRepo.LoadTransactions());
 
-        private void save_Click(object sender, EventArgs e) { }
+            Random random = new Random();
+            AddTransaction(Assets.ElementAt(1), Assets.ElementAt(2), random);
+            AddTransaction(Assets.ElementAt(2), Assets.ElementAt(3), random);
+            AddTransaction(Assets.ElementAt(3), Assets.ElementAt(2), random);
+            AddTransaction(Assets.ElementAt(1), Assets.ElementAt(4), random);
+            AddTransaction(Assets.ElementAt(2), Assets.ElementAt(0), random);
 
-        private void clear_Click(object sender, EventArgs e) { }
+            var transactionsView = new View.TransactionsView();
+            transactionsView.DataContext = Transactions;
+            uiRoot_pivot_transactions.Content = transactionsView;
+
+            Transactions.CollectionChanged += (s1, e1) =>
+            {
+                dbRepo.SaveTransactions(Transactions.ToList());
+            };
+        }
+
+        void AddTransaction(AssetModel origin, AssetModel target, Random random)
+        {
+            TransactionModel xact = new TransactionModel
+            {
+                Label = string.Format("{0}{1}{2}", (char)random.Next(65, 90), (char)random.Next(65, 130), (char)random.Next(65, 130)),
+                Amount = (float)Math.Round(random.NextDouble() * random.Next(0, 3000), 2),
+                TransactionDate = new DateTime(random.Next(2000, 2013), random.Next(1, 12), random.Next(1, 29)),
+            };
+
+            origin.AddTransaction(xact, true);
+            target.AddTransaction(xact, false);
+            Transactions.Add(xact);
+        }
+
+        #endregion
 
         private void AddAsset_Click(object sender, EventArgs e)
         {

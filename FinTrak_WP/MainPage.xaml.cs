@@ -35,44 +35,8 @@ namespace FinTrak_WP
 
         void AddTestData()
         {
-            Assets.Add(new AssetModel
-            {
-                Title = "Dud",
-                TypeId = AssetType.Cash,
-                CurrentBalance = 24.66f,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Dede",
-                TypeId = AssetType.Account,
-                CurrentBalance = -4.37f,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Ha ho",
-                TypeId = AssetType.CashSavings,
-                CurrentBalance = 224.98f,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Dörd",
-                TypeId = AssetType.CashSavings,
-                CurrentBalance = 25.46f,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Hsd",
-                TypeId = AssetType.Prepaid,
-                CurrentBalance = 48.40f,
-            });
-
             var assetView = new View.AssetsView();
             assetView.DataContext = Assets;
-            // uiRoot_pivot_assets_content.Content = assetView;
             uiRoot_pivot_assets.Content = assetView;
         }
 

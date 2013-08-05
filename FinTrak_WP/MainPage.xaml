@@ -37,7 +37,6 @@
 
             <phone:PivotItem x:Name="uiRoot_pivot_assets" Header="assets" Margin="12,0">
                 <Grid>
-                    <ContentControl x:Name="uiRoot_pivot_assets_content"/>
                 </Grid>
             </phone:PivotItem>
 

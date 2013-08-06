@@ -84,13 +84,13 @@ namespace FinTrak_WP.View
                 if (Transaction.OriginIsAsset)
                 {
                     AssetModel _origin = (AssetModel)origin;
-                    _origin.AddTransaction(Transaction);
+                    _origin.AddTransaction(Transaction, true);
                 }
 
                 if (Transaction.TargetIsAsset)
                 {
                     AssetModel _target = (AssetModel)target;
-                    _target.AddTransaction(Transaction);
+                    _target.AddTransaction(Transaction, false);
                 }
             }
 

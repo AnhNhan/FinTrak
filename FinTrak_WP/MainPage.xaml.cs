@@ -37,7 +37,23 @@ namespace FinTrak_WP
             if (!_dataLoaded)
             {
                 this.Loaded += InitializeData;
+                this.Loaded += InitializeViews;
             }
+        }
+
+        private void InitializeViews(object sender, RoutedEventArgs e)
+        {
+            var assetView = new View.AssetsView();
+            assetView.DataContext = Assets;
+            uiRoot_pivot_assets.Content = assetView;
+
+            var transactionsView = new View.TransactionsView();
+            transactionsView.DataContext = Transactions;
+            uiRoot_pivot_transactions.Content = transactionsView;
+
+            var subjectView = new View.AssetsView();
+            subjectView.DataContext = Subjects;
+            uiRoot_pivot_subjects.Content = subjectView;
         }
 
         #region data stuff
@@ -52,15 +68,44 @@ namespace FinTrak_WP
 
             _dataLoaded = true;
             this.Loaded -= InitializeData;
+
+            // Link assets and transactions with each other
+            foreach (AssetModel asset in Assets)
+            {
+                List<TransactionModel> xacts = Transactions.Where((TransactionModel transaction) =>
+                {
+                    return (transaction.OriginId == asset.Id && transaction.OriginIsAsset) || (transaction.TargetId == asset.Id && transaction.TargetIsAsset);
+                }).ToList();
+
+                foreach (TransactionModel xact in xacts) {
+                    asset.AddTransaction(xact, xact.OriginIsAsset);
+                }
+            }
+
+            foreach (SubjectModel subject in Subjects)
+            {
+                List<TransactionModel> xacts = Transactions.Where((TransactionModel transaction) =>
+                {
+                    return (transaction.OriginId == subject.Id && !transaction.OriginIsAsset) || (transaction.TargetId == subject.Id && !transaction.TargetIsAsset);
+                }).ToList();
+
+                foreach (TransactionModel xact in xacts)
+                {
+                    if (!xact.TargetIsAsset)
+                    {
+                        xact.Target = subject;
+                    }
+                    if (!xact.OriginIsAsset)
+                    {
+                        xact.Origin = subject;
+                    }
+                }
+            }
         }
 
         void InitializeAssets()
         {
             Assets = new AssetCollection(dbRepo.LoadAssets());
-
-            var assetView = new View.AssetsView();
-            assetView.DataContext = Assets;
-            uiRoot_pivot_assets.Content = assetView;
 
             Assets.CollectionChanged += (s1, e1) =>
             {
@@ -72,20 +117,20 @@ namespace FinTrak_WP
         {
             Subjects = new SubjectCollection(dbRepo.LoadSubjects());
 
-            Subjects.Add(new SubjectModel
+            if (Subjects.Count < 2)
             {
-                Name = "Bank of America",
-                Label = "Banking Corp.",
-            });
-            Subjects.Add(new SubjectModel
-            {
-                Name = "FedEx",
-                Label = "Postal Corp.",
-            });
-
-            //var transactionsView = new View.TransactionsView();
-            //transactionsView.DataContext = Subjects;
-            //uiRoot_pivot_transactions.Content = transactionsView;
+                Subjects.Add(new SubjectModel
+                {
+                    Name = "Bank of America",
+                    Label = "Banking Corp.",
+                });
+                Subjects.Add(new SubjectModel
+                {
+                    Name = "FedEx",
+                    Label = "Postal Corp.",
+                });
+                dbRepo.SaveSubjects(Subjects.ToList());
+            }
 
             Subjects.CollectionChanged += (s1, e1) =>
             {
@@ -96,10 +141,6 @@ namespace FinTrak_WP
         void InitializeTransactions()
         {
             Transactions = new TransactionCollection(dbRepo.LoadTransactions());
-
-            var transactionsView = new View.TransactionsView();
-            transactionsView.DataContext = Transactions;
-            uiRoot_pivot_transactions.Content = transactionsView;
 
             Transactions.CollectionChanged += (s1, e1) =>
             {

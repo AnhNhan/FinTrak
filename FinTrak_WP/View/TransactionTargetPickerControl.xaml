@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="FinTrak_WP.View.TransactionTargetPickerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+
+        <StackPanel>
+            <TextBlock x:Name="xactPickerHeader" Text="{Binding Label}" Margin="0,2" Style="{StaticResource PhoneTextSmallStyle}"/>
+            
+            <toolkit:ListPicker x:Name="xactTargetPicker" Margin="0,2">
+            </toolkit:ListPicker>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="is an asset" Margin="0,7,0,2" Style="{StaticResource PhoneTextNormalStyle}"/>
+                <toolkit:ToggleSwitch x:Name="xactIsAssetToggle">
+                    <toolkit:ToggleSwitch.ContentTemplate>
+                        <DataTemplate>
+                        </DataTemplate>
+                    </toolkit:ToggleSwitch.ContentTemplate>
+                </toolkit:ToggleSwitch>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

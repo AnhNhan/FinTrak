@@ -174,12 +174,18 @@ namespace FinTrak.Asset
             if (isOrigin)
             {
                 CurrentBalance -= transaction.Amount;
-                transaction.Origin = this;
+                if (transaction.Origin != this)
+                {
+                    transaction.Origin = this;
+                }
             }
             else
             {
                 CurrentBalance += transaction.Amount;
-                transaction.Target = this;
+                if (transaction.Target != this)
+                {
+                    transaction.Target = this;
+                }
             }
         }
 

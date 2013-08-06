@@ -22,7 +22,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding ITLabel}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                            <TextBlock Text="{Binding ITType}" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                            <TextBlock Text="{Binding ITType}" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneChromeBrush}"/>
                         </StackPanel>
                     </DataTemplate>
                 </toolkit:ListPicker.ItemTemplate>

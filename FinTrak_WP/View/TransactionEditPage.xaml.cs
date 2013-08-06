@@ -20,24 +20,9 @@ namespace FinTrak_WP.View
         bool _didNotExist = true;
         TransactionModel Transaction;
 
-        TransactionTargetPickerControl _originPicker;
-        TransactionTargetPickerControl _targetPicker;
-
         public TransactionEditPage()
         {
             InitializeComponent();
-
-            _originPicker = new TransactionTargetPickerControl()
-            {
-                Header = "Origin of the transaction"
-            };
-            xactFrom.Content = _originPicker;
-
-            _targetPicker = new TransactionTargetPickerControl()
-            {
-                Header = "Target of the transaction"
-            };
-            xactTo.Content = _targetPicker;
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -69,8 +54,8 @@ namespace FinTrak_WP.View
                 return;
             }
 
-            ITransactionTarget origin = _originPicker.SelectedItem;
-            ITransactionTarget target = _targetPicker.SelectedItem;
+            ITransactionTarget origin = xactFrom.SelectedItem;
+            ITransactionTarget target = xactTo.SelectedItem;
 
             Type originType = origin.GetType();
             Type targetType = target.GetType();

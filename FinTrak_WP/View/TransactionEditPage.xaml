@@ -5,6 +5,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:fintrak="clr-namespace:FinTrak_WP.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -41,8 +42,8 @@
                     <toolkit:PhoneTextBox x:Name="xactLabel" Hint="Label" />
                     <toolkit:PhoneTextBox x:Name="xactAmount" Hint="Amount" InputScope="Number" />
 
-                    <ContentControl x:Name="xactFrom" />
-                    <ContentControl x:Name="xactTo" />
+                    <fintrak:TransactionTargetPickerControl x:Name="xactFrom" Header="Origin of the transaction" />
+                    <fintrak:TransactionTargetPickerControl x:Name="xactTo" Header="Target of the transaction" />
                     <toolkit:DatePicker x:Name="xactXactDate" Header="Transaction date" />
                     <toolkit:DatePicker x:Name="xactValueDate" Header="Value date" />
                 </StackPanel>

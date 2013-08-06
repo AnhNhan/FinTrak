@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" x:Class="FinTrak_WP.View.AssetsView"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:fintrak="clr-namespace:FinTrak_WP.View"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -16,29 +17,7 @@
         <ListBox ItemsSource="{Binding BindsDirectlyToSource=True}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel VerticalAlignment="Top" Margin="{StaticResource PhoneTouchTargetOverhang}" MinWidth="432">
-                        <Grid>
-                            <TextBlock
-                                Text="{Binding CurrentBalance,Mode=OneWay}"
-                                Margin="0,2,2,2"
-                                HorizontalAlignment="Right"
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                Foreground="{Binding BalanceColor}"
-                                FontFamily="{StaticResource PhoneFontFamilyBold}"/>
-                            <TextBlock
-                                Text="{Binding Title,Mode=OneWay}"
-                                Margin="0,2,2,2"
-                                Style="{StaticResource PhoneTextExtraLargeStyle}"
-                                Grid.Column="0"/>
-                        </Grid>
-
-                        <TextBlock
-                            Text="{Binding Type,Mode=OneWay}"
-                            Style="{StaticResource PhoneTextAccentStyle}"
-                            Margin="0,2,2,2"
-                            toolkit:SlideInEffect.LineIndex="1"/>
-                    </StackPanel>
+                    <fintrak:AssetView DataContext="{Binding}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

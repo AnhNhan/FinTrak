@@ -90,16 +90,7 @@ namespace FinTrak_WP.View
             {
                 _targetsLoaded = new List<ITransactionTarget>(MainPage.Subjects.ToArray());
             }
-
-            string[] elements = new string[_targetsLoaded.Count];
-            int i = 0;
-            foreach (var element in _targetsLoaded)
-            {
-                elements[i] = element.ITLabel;
-                i++;
-            }
-
-            xactTargetPicker.ItemsSource = elements;
+            xactTargetPicker.ItemsSource = _targetsLoaded;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

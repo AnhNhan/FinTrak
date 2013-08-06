@@ -51,7 +51,7 @@ namespace FinTrak_WP
             transactionsView.DataContext = Transactions;
             uiRoot_pivot_transactions.Content = transactionsView;
 
-            var subjectView = new View.AssetsView();
+            var subjectView = new View.SubjectsView();
             subjectView.DataContext = Subjects;
             uiRoot_pivot_subjects.Content = subjectView;
         }

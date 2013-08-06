@@ -214,6 +214,9 @@ namespace FinTrak_WP
         private void clearStorage_Click(object sender, EventArgs e)
         {
             dbRepo.ClearStorage();
+            Assets.Clear();
+            Transactions.Clear();
+            Subjects.Clear();
         }
     }
 }

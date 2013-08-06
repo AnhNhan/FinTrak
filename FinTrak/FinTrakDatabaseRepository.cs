@@ -123,6 +123,7 @@ namespace FinTrak
         public void ClearStorage()
         {
             db.DeleteDatabase();
+            db.CreateDatabase();
         }
     }
 }

@@ -145,7 +145,7 @@ namespace FinTrak.Transaction
         {
             get
             {
-                if (Amount < 0.0f)
+                if (!TargetIsAsset)
                 {
                     return "Red";
                 }
@@ -170,8 +170,8 @@ namespace FinTrak.Transaction
                     throw new ArgumentNullException();
                 }
                 _origin = value;
-                _originId = value.Id;
-                _originIsAsset = value.GetType().ToString() == "FinTrak.Asset.AssetModel";
+                OriginId = value.Id;
+                OriginIsAsset = value.GetType().Equals(typeof(AssetModel));
                 NotifyPropertyChanged("Origin");
             }
         }
@@ -189,8 +189,8 @@ namespace FinTrak.Transaction
                     throw new ArgumentNullException();
                 }
                 _target = value;
-                _targetId = value.Id;
-                _targetIsAsset = value.GetType().ToString() == "FinTrak.Asset.AssetModel";
+                TargetId = value.Id;
+                TargetIsAsset = value.GetType().Equals(typeof(AssetModel));
                 NotifyPropertyChanged("Target");
             }
         }

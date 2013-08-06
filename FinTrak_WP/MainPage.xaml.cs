@@ -23,7 +23,7 @@ namespace FinTrak_WP
 
         private List<ApplicationBarIconButton> AppBarButtons;
 
-        private FinTrakDatabaseRepository dbRepo = new FinTrakDatabaseRepository();
+        private static FinTrakDatabaseRepository dbRepo = new FinTrakDatabaseRepository();
 
         public static AssetCollection Assets { get; private set; }
         public static TransactionCollection Transactions { get; private set; }
@@ -166,6 +166,11 @@ namespace FinTrak_WP
             Assets.Clear();
             Transactions.Clear();
             Subjects.Clear();
+        }
+
+        public static void SaveAll()
+        {
+            dbRepo.SaveGenerically();
         }
     }
 }

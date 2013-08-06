@@ -120,6 +120,11 @@ namespace FinTrak
             db.SubmitChanges();
         }
 
+        public void SaveGenerically()
+        {
+            db.SubmitChanges();
+        }
+
         public void ClearStorage()
         {
             db.DeleteDatabase();

@@ -79,8 +79,6 @@ namespace FinTrak_WP.View
 
             if (_didNotExist)
             {
-                MainPage.Transactions.Add(Transaction);
-
                 if (Transaction.OriginIsAsset)
                 {
                     AssetModel _origin = (AssetModel)origin;
@@ -92,6 +90,8 @@ namespace FinTrak_WP.View
                     AssetModel _target = (AssetModel)target;
                     _target.AddTransaction(Transaction, false);
                 }
+
+                MainPage.Transactions.Add(Transaction);
             }
 
             NavigationService.GoBack();

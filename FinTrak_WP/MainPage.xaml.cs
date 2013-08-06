@@ -104,13 +104,13 @@ namespace FinTrak_WP
 
             Subjects.Add(new SubjectModel
             {
-                Name = "Name One",
-                Label = "Label One",
+                Name = "Bank of America",
+                Label = "Banking Corp.",
             });
             Subjects.Add(new SubjectModel
             {
-                Name = "Name Two",
-                Label = "Label Two",
+                Name = "FedEx",
+                Label = "Postal Corp.",
             });
 
             //var transactionsView = new View.TransactionsView();

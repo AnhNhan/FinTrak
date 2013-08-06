@@ -19,7 +19,6 @@ namespace FinTrak.Subject
         private uint _id;
         private string _name;
         private string _label;
-        private string _type;
         private string _phone;
         private string _email;
         private DateTime _dateCreated;
@@ -72,25 +71,6 @@ namespace FinTrak.Subject
                 }
                 _label = value;
                 NotifyPropertyChanged("Title");
-            }
-        }
-
-        [Column]
-        public string Type
-        {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                value.Trim();
-                if (value.Length == 0)
-                {
-                    throw new ArgumentException();
-                }
-                _type = value;
-                NotifyPropertyChanged("Type");
             }
         }
 
@@ -150,9 +130,9 @@ namespace FinTrak.Subject
 
         #region interface
 
-        public string ITLabel { get { return Label; } }
+        public string ITLabel { get { return Name; } }
 
-        public string ITType { get { return Type; } }
+        public string ITType { get { return Label; } }
 
         #endregion
 

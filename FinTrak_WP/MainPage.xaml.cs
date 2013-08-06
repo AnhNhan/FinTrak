@@ -58,36 +58,6 @@ namespace FinTrak_WP
         {
             Assets = new AssetCollection(dbRepo.LoadAssets());
 
-            Assets.Add(new AssetModel
-            {
-                Title = "Dud",
-                TypeId = AssetType.Cash,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Dede",
-                TypeId = AssetType.Account,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Ha ho",
-                TypeId = AssetType.CashSavings,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Dörd",
-                TypeId = AssetType.CashSavings,
-            });
-
-            Assets.Add(new AssetModel
-            {
-                Title = "Hsd",
-                TypeId = AssetType.Prepaid,
-            });
-
             var assetView = new View.AssetsView();
             assetView.DataContext = Assets;
             uiRoot_pivot_assets.Content = assetView;
@@ -127,13 +97,6 @@ namespace FinTrak_WP
         {
             Transactions = new TransactionCollection(dbRepo.LoadTransactions());
 
-            Random random = new Random();
-            AddTransaction(Assets.ElementAt(1), Assets.ElementAt(2), random);
-            AddTransaction(Assets.ElementAt(2), Assets.ElementAt(3), random);
-            AddTransaction(Assets.ElementAt(3), Assets.ElementAt(2), random);
-            AddTransaction(Assets.ElementAt(1), Assets.ElementAt(4), random);
-            AddTransaction(Assets.ElementAt(2), Assets.ElementAt(0), random);
-
             var transactionsView = new View.TransactionsView();
             transactionsView.DataContext = Transactions;
             uiRoot_pivot_transactions.Content = transactionsView;
@@ -142,20 +105,6 @@ namespace FinTrak_WP
             {
                 dbRepo.SaveTransactions(Transactions.ToList());
             };
-        }
-
-        void AddTransaction(AssetModel origin, AssetModel target, Random random)
-        {
-            TransactionModel xact = new TransactionModel
-            {
-                Label = string.Format("{0}{1}{2}", (char)random.Next(65, 90), (char)random.Next(65, 130), (char)random.Next(65, 130)),
-                Amount = (float)Math.Round(random.NextDouble() * random.Next(0, 3000), 2),
-                TransactionDate = new DateTime(random.Next(2000, 2013), random.Next(1, 12), random.Next(1, 29)),
-            };
-
-            origin.AddTransaction(xact, true);
-            target.AddTransaction(xact, false);
-            Transactions.Add(xact);
         }
 
         #endregion

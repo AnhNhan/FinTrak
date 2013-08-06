@@ -78,7 +78,6 @@ namespace FinTrak.Asset
             }
         }
 
-        [Column]
         public float CurrentBalance
         {
             get
@@ -92,7 +91,6 @@ namespace FinTrak.Asset
             }
         }
 
-        [Column]
         public int NumTransactions
         {
             get

@@ -21,7 +21,7 @@ namespace FinTrak.Subject
         private string _label;
         private string _phone;
         private string _email;
-        private DateTime _dateCreated;
+        private DateTime _dateCreated = DateTime.Now;
 
         #region properties
 
@@ -83,11 +83,6 @@ namespace FinTrak.Subject
             }
             set
             {
-                value.Trim();
-                if (value.Length == 0)
-                {
-                    throw new ArgumentException();
-                }
                 _phone = value;
                 NotifyPropertyChanged("Phone");
             }
@@ -102,11 +97,6 @@ namespace FinTrak.Subject
             }
             set
             {
-                value.Trim();
-                if (value.Length == 0)
-                {
-                    throw new ArgumentException();
-                }
                 _email = value;
                 NotifyPropertyChanged("Email");
             }

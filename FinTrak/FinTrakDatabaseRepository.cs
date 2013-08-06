@@ -23,7 +23,7 @@ namespace FinTrak
         private Func<FinTrakDataContext, IQueryable<BudgetModel>> queryAllBudgets;
         private Func<FinTrakDataContext, IQueryable<SubjectModel>> queryAllSubjects;
         private Func<FinTrakDataContext, IOrderedQueryable<TransactionModel>> queryAllTransactions;
-        private Func<FinTrakDataContext, int, IOrderedQueryable<TransactionModel>> queryTransactionsFromAsset;
+        private Func<FinTrakDataContext, uint, IOrderedQueryable<TransactionModel>> queryTransactionsFromAsset;
 
         public FinTrakDatabaseRepository()
         {
@@ -42,7 +42,7 @@ namespace FinTrak
             queryAllTransactions = CompiledQuery.Compile((FinTrakDataContext context) => from transaction in db.Transactions
                                                                                          orderby transaction.TransactionDate
                                                                                          select transaction);
-            queryTransactionsFromAsset = CompiledQuery.Compile((FinTrakDataContext context, int assetId) => from transaction in db.Transactions
+            queryTransactionsFromAsset = CompiledQuery.Compile((FinTrakDataContext context, uint assetId) => from transaction in db.Transactions
                                                                                                             where (transaction.OriginId == assetId && transaction.OriginIsAsset) || (transaction.TargetId == assetId && transaction.OriginIsAsset)
                                                                                                             orderby transaction.TransactionDate
                                                                                                             select transaction);
@@ -99,7 +99,7 @@ namespace FinTrak
             db.SubmitChanges();
         }
 
-        public List<TransactionModel> LoadTransactions(int assetId = 0)
+        public List<TransactionModel> LoadTransactions(uint assetId = 0)
         {
             IEnumerable<TransactionModel> transactions;
             if (assetId == 0)

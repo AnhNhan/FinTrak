@@ -210,5 +210,10 @@ namespace FinTrak_WP
                 ApplicationBar.IsVisible = false;
             }
         }
+
+        private void clearStorage_Click(object sender, EventArgs e)
+        {
+            dbRepo.ClearStorage();
+        }
     }
 }

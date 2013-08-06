@@ -119,5 +119,10 @@ namespace FinTrak
             db.Transactions.InsertAllOnSubmit(newTransactions);
             db.SubmitChanges();
         }
+
+        public void ClearStorage()
+        {
+            db.DeleteDatabase();
+        }
     }
 }

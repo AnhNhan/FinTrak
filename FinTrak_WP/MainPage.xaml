@@ -15,7 +15,9 @@
     shell:SystemTray.IsVisible="True">
 
     <phone:PhoneApplicationPage.Resources>
-            <shell:ApplicationBarIconButton x:Key="assetsAppBarButton" x:Name="addAsset" IconUri="/Assets/Appbar/add.png" Text="add asset" Click="AddAsset_Click" />
+        <shell:ApplicationBarIconButton x:Key="assetsAppBarButton" x:Name="addAsset" IconUri="/Assets/Appbar/add.png" Text="add asset" Click="AddAsset_Click" />
+
+        <shell:ApplicationBarIconButton x:Key="transactionsAppBarButton" x:Name="addTransaction" IconUri="/Assets/Appbar/add.png" Text="add transaction" Click="AddTransaction_Click" />
     </phone:PhoneApplicationPage.Resources>
     
     <phone:PhoneApplicationPage.ApplicationBar>

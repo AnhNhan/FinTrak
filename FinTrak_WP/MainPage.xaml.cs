@@ -27,6 +27,7 @@ namespace FinTrak_WP
 
         public static AssetCollection Assets { get; private set; }
         public static TransactionCollection Transactions { get; private set; }
+        public static SubjectCollection Subjects { get; private set; }
 
         // Konstruktor
         public MainPage()
@@ -47,6 +48,7 @@ namespace FinTrak_WP
 
             InitializeAssets();
             InitializeTransactions();
+            InitializeSubjects();
 
             _dataLoaded = true;
             this.Loaded -= InitializeData;
@@ -96,6 +98,31 @@ namespace FinTrak_WP
             };
         }
 
+        void InitializeSubjects()
+        {
+            Subjects = new SubjectCollection(dbRepo.LoadSubjects());
+
+            Subjects.Add(new SubjectModel
+            {
+                Name = "Name One",
+                Label = "Label One",
+            });
+            Subjects.Add(new SubjectModel
+            {
+                Name = "Name Two",
+                Label = "Label Two",
+            });
+
+            //var transactionsView = new View.TransactionsView();
+            //transactionsView.DataContext = Subjects;
+            //uiRoot_pivot_transactions.Content = transactionsView;
+
+            Subjects.CollectionChanged += (s1, e1) =>
+            {
+                dbRepo.SaveSubjects(Subjects.ToList());
+            };
+        }
+
         void InitializeTransactions()
         {
             Transactions = new TransactionCollection(dbRepo.LoadTransactions());
@@ -138,6 +165,11 @@ namespace FinTrak_WP
             NavigationService.Navigate(new Uri("/View/AssetEditPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
+        private void AddTransaction_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/TransactionEditPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
         private void uiRoot_pivot_LoadedPivotItem(object sender, PivotItemEventArgs e)
         {
             if (e.Item == uiRoot_pivot_assets)
@@ -145,11 +177,17 @@ namespace FinTrak_WP
                 var button = (ApplicationBarIconButton)Resources["assetsAppBarButton"];
                 AppBarButtons.Add(button);
                 ApplicationBar.Buttons.Add(button);
+            }
+            else if (e.Item == uiRoot_pivot_transactions)
+            {
+                var button = (ApplicationBarIconButton)Resources["transactionsAppBarButton"];
+                AppBarButtons.Add(button);
+                ApplicationBar.Buttons.Add(button);
+            }
 
-                if (ApplicationBar.Buttons.Count != 0)
-                {
-                    ApplicationBar.IsVisible = true;
-                }
+            if (ApplicationBar.Buttons.Count != 0)
+            {
+                ApplicationBar.IsVisible = true;
             }
         }
 

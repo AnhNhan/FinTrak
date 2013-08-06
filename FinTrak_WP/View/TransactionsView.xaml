@@ -12,7 +12,7 @@
     
     <Grid x:Name="LayoutRoot">
 
-        <ListBox ItemsSource="{Binding BindsDirectlyToSource=True}">
+        <ListBox ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <fintral:TransactionView DataContext="{Binding}" />

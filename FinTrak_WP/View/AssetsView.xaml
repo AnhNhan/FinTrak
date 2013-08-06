@@ -14,7 +14,7 @@
 
     <Grid x:Name="LayoutRoot">
 
-        <ListBox ItemsSource="{Binding BindsDirectlyToSource=True}">
+        <ListBox ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <fintrak:AssetView DataContext="{Binding}" />

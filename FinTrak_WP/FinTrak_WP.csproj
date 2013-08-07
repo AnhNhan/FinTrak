@@ -112,6 +112,9 @@
     <Compile Include="View\AssetView.xaml.cs">
       <DependentUpon>AssetView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SubjectEditPage.xaml.cs">
+      <DependentUpon>SubjectEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SubjectsView.xaml.cs">
       <DependentUpon>SubjectsView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AssetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubjectEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

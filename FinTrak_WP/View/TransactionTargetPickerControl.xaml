@@ -11,18 +11,18 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
-    
+
     <Grid x:Name="LayoutRoot">
 
         <StackPanel Margin="{StaticResource PhoneTouchTargetOverhang}">
             <TextBlock x:Name="xactPickerHeader" Text="{Binding Header}" Margin="0,2" Style="{StaticResource PhoneTextSmallStyle}"/>
 
-            <toolkit:ListPicker x:Name="xactTargetPicker" Margin="0,2">
+            <toolkit:ListPicker x:Name="xactTargetPicker" Margin="0,2" ExpansionMode="FullScreenOnly">
                 <toolkit:ListPicker.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding ITLabel}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                            <TextBlock Text="{Binding ITType}" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneChromeBrush}"/>
+                            <TextBlock Text="{Binding ITLabel}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="6,0,0,6" />
+                            <TextBlock Text="{Binding ITType}" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneTextLowContrastBrush}" Margin="6,6,0,6"/>
                         </StackPanel>
                     </DataTemplate>
                 </toolkit:ListPicker.ItemTemplate>
@@ -32,10 +32,10 @@
                     </DataTemplate>
                 </toolkit:ListPicker.FullModeItemTemplate>
             </toolkit:ListPicker>
-            
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,6">
                 <TextBlock Text="is an asset" Margin="0,7,0,2" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <toolkit:ToggleSwitch x:Name="xactIsAssetToggle">
+                <toolkit:ToggleSwitch x:Name="xactIsAssetToggle" Margin="0,0,0,-36">
                     <toolkit:ToggleSwitch.ContentTemplate>
                         <DataTemplate>
                         </DataTemplate>

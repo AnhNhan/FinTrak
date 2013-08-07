@@ -16,14 +16,18 @@
     shell:SystemTray.IsVisible="True">
 
     <phone:PhoneApplicationPage.Resources>
-        <shell:ApplicationBarIconButton x:Key="assetsAppBarButton" x:Name="addAsset" IconUri="/Assets/Appbar/add.png" Text="add asset" Click="AddAsset_Click" />
+        <shell:ApplicationBarIconButton x:Key="assetsAppBarButton" x:Name="addAsset" IconUri="/Assets/AppBar/add.png" Text="add asset" Click="AddAsset_Click" />
 
         <shell:ApplicationBarIconButton x:Key="transactionsAppBarButton" x:Name="addTransaction" IconUri="/Assets/Appbar/add.png" Text="add transaction" Click="AddTransaction_Click" />
+
+        <shell:ApplicationBarIconButton x:Key="subjectsAppBarButton" x:Name="addSubject" IconUri="/Assets/Appbar/add.png" Text="add subject" Click="AddSubject_Click" />
     </phone:PhoneApplicationPage.Resources>
     
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="False">
-            <shell:ApplicationBarIconButton x:Name="clearStorage" IconUri="/Assets/AppBar/delete.png" Text="clear storage" Click="clearStorage_Click" />
+        <shell:ApplicationBar Mode="Minimized" Opacity="0.2">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="clearStorage" Text="clear storage" Click="clearStorage_Click" />
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

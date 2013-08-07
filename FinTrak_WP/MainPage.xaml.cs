@@ -117,21 +117,6 @@ namespace FinTrak_WP
         {
             Subjects = new SubjectCollection(dbRepo.LoadSubjects());
 
-            if (Subjects.Count < 2)
-            {
-                Subjects.Add(new SubjectModel
-                {
-                    Name = "Bank of America",
-                    Label = "Banking Corp.",
-                });
-                Subjects.Add(new SubjectModel
-                {
-                    Name = "FedEx",
-                    Label = "Postal Corp.",
-                });
-                dbRepo.SaveSubjects(Subjects.ToList());
-            }
-
             Subjects.CollectionChanged += (s1, e1) =>
             {
                 dbRepo.SaveSubjects(Subjects.ToList());
@@ -160,6 +145,11 @@ namespace FinTrak_WP
             NavigationService.Navigate(new Uri("/View/TransactionEditPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
+        private void AddSubject_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/SubjectEditPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
         private void uiRoot_pivot_LoadedPivotItem(object sender, PivotItemEventArgs e)
         {
             if (e.Item == uiRoot_pivot_assets)
@@ -174,10 +164,17 @@ namespace FinTrak_WP
                 AppBarButtons.Add(button);
                 ApplicationBar.Buttons.Add(button);
             }
+            else if (e.Item == uiRoot_pivot_subjects)
+            {
+                var button = (ApplicationBarIconButton)Resources["subjectsAppBarButton"];
+                AppBarButtons.Add(button);
+                ApplicationBar.Buttons.Add(button);
+            }
 
             if (ApplicationBar.Buttons.Count != 0)
             {
-                ApplicationBar.IsVisible = true;
+                ApplicationBar.Mode = ApplicationBarMode.Default;
+                ApplicationBar.Opacity = 1.0;
             }
         }
 
@@ -197,7 +194,8 @@ namespace FinTrak_WP
 
             if (ApplicationBar.Buttons.Count == 0)
             {
-                ApplicationBar.IsVisible = false;
+                ApplicationBar.Mode = ApplicationBarMode.Minimized;
+                ApplicationBar.Opacity = 0.2;
             }
         }
 

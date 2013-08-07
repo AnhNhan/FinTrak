@@ -9,6 +9,13 @@
     <!--Anwendungsressourcen-->
     <Application.Resources>
         <sys:String x:Key="ApplicationTitle">FIN TRAK</sys:String>
+
+        <Color x:Key="ApplicationLayoutBackgroundColor">#2A2A2A</Color>
+        <SolidColorBrush x:Key="ApplicationLayoutBackgroundBrush" Color="{StaticResource ApplicationLayoutBackgroundColor}" />
+
+        <Color x:Key="ApplicationLayoutForegroundColor"></Color>
+        <SolidColorBrush x:Key="ApplicationLayoutForegroundBrush" Color="{StaticResource ApplicationLayoutForegroundColor}" />
+
         <local:LocalizedStrings xmlns:local="clr-namespace:FinTrak_WP" x:Key="LocalizedStrings"/>
     </Application.Resources>
 

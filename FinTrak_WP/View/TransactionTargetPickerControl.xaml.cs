@@ -73,11 +73,13 @@ namespace FinTrak_WP.View
         void xactIsAssetToggle_Unchecked(object sender, RoutedEventArgs e)
         {
             RebuildPicker();
+            xactTargetPicker.FullModeHeader = "choose a subject";
         }
 
         void xactIsAssetToggle_Checked(object sender, RoutedEventArgs e)
         {
             RebuildPicker();
+            xactTargetPicker.FullModeHeader = "choose an asset";
         }
 
         void RebuildPicker()

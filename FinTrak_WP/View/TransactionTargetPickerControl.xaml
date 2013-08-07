@@ -17,7 +17,7 @@
         <StackPanel Margin="{StaticResource PhoneTouchTargetOverhang}">
             <TextBlock x:Name="xactPickerHeader" Text="{Binding Header}" Margin="0,2" Style="{StaticResource PhoneTextSmallStyle}"/>
 
-            <toolkit:ListPicker x:Name="xactTargetPicker" Margin="0,2" ExpansionMode="FullScreenOnly">
+            <toolkit:ListPicker x:Name="xactTargetPicker" Margin="0,2" ExpansionMode="FullScreenOnly" FullModeHeader="choose a subject">
                 <toolkit:ListPicker.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

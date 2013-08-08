@@ -46,7 +46,7 @@ namespace FinTrak_WP.View
                 return;
             }
 
-            float amount = float.Parse(amountText);
+            float amount = float.Parse(amountText, System.Globalization.NumberStyles.Currency);
             amount = (float)Math.Round(amount, 2);
             if (amount < 0.01f)
             {

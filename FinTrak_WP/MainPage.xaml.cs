@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -29,6 +30,9 @@ namespace FinTrak_WP
         public static TransactionCollection Transactions { get; private set; }
         public static SubjectCollection Subjects { get; private set; }
 
+        private static NavigationService _navigator;
+        public static NavigationService Navigator { get { return _navigator; } }
+
         // Konstruktor
         public MainPage()
         {
@@ -38,6 +42,7 @@ namespace FinTrak_WP
             {
                 this.Loaded += InitializeData;
                 this.Loaded += InitializeViews;
+                this.Loaded += (s, e) => { _navigator = NavigationService; };
             }
         }
 

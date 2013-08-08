@@ -25,6 +25,11 @@ namespace FinTrak.Asset
         private int _numTransactions = 0;
         private DateTime _dateCreated = DateTime.Now;
 
+        public AssetModel()
+        {
+            Transactions = new List<TransactionModel>();
+        }
+
         #region properties
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
@@ -164,7 +169,7 @@ namespace FinTrak.Asset
         }
 
         // Unused, we populate it from time to time, but it is incomplete in general
-        public List<TransactionModel> Transactions = new List<TransactionModel>();
+        public List<TransactionModel> Transactions { get; set; }
 
         public void AddTransaction(TransactionModel transaction, bool isOrigin = true)
         {

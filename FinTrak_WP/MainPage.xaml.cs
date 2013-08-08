@@ -82,8 +82,16 @@ namespace FinTrak_WP
                     return (transaction.OriginId == asset.Id && transaction.OriginIsAsset) || (transaction.TargetId == asset.Id && transaction.TargetIsAsset);
                 }).ToList();
 
-                foreach (TransactionModel xact in xacts) {
-                    asset.AddTransaction(xact, xact.OriginIsAsset);
+                foreach (TransactionModel xact in xacts)
+                {
+                    if (xact.OriginIsAsset)
+                    {
+                        asset.AddTransaction(xact, true);
+                    }
+                    if (xact.TargetIsAsset)
+                    {
+                        asset.AddTransaction(xact, false);
+                    }
                 }
             }
 

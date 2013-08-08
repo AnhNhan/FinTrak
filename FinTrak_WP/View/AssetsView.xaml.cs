@@ -8,6 +8,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
+using FinTrak.Asset;
+
 namespace FinTrak_WP.View
 {
     public partial class AssetsView : UserControl
@@ -15,6 +17,11 @@ namespace FinTrak_WP.View
         public AssetsView()
         {
             InitializeComponent();
+        }
+
+        private void AssetView_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            MainPage.Navigator.Navigate(new Uri("/View/AssetDetailPage.xaml?assetId=" + ((AssetModel)((AssetView)sender).DataContext).Id, UriKind.RelativeOrAbsolute));
         }
     }
 }

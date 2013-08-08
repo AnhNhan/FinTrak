@@ -17,7 +17,7 @@
         <ListBox ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <fintrak:AssetView DataContext="{Binding}" />
+                    <fintrak:AssetView DataContext="{Binding}" Tap="AssetView_Tap" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -23,6 +23,13 @@ namespace FinTrak_WP.View
         public TransactionEditPage()
         {
             InitializeComponent();
+
+            xactAmount.LostFocus += xactAmount_LostFocus;
+        }
+
+        void xactAmount_LostFocus(object sender, RoutedEventArgs e)
+        {
+            xactAmount.Text = xactAmount.Text.Replace(".", ",");
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -45,6 +52,7 @@ namespace FinTrak_WP.View
                 MessageBox.Show("Please also provide an amount :P");
                 return;
             }
+            amountText = amountText.Replace(".", ",");
 
             float amount = float.Parse(amountText, System.Globalization.NumberStyles.Currency);
             amount = (float)Math.Round(amount, 2);

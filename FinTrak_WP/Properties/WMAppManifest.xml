@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
-  <DefaultLanguage xmlns="" code="de-DE" />
-  <App xmlns="" ProductID="{57ec1128-6064-4b05-9dcd-c16ee99ea847}" Title="FinTrak" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="FinTrak_WP author" Description="Sample description" Publisher="FinTrak_WP" PublisherID="{44c7ee16-091b-4907-b2b8-006d92a21aab}">
+  <DefaultLanguage xmlns="" code="en-US" />
+  <App xmlns="" ProductID="{57ec1128-6064-4b05-9dcd-c16ee99ea847}" Title="FinTrak" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Anh Nhan Nguyen" Description="Sample description" Publisher="Anh Nhan Nguyen" PublisherID="{44c7ee16-091b-4907-b2b8-006d92a21aab}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -19,24 +19,28 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>FinTrak_WP</Title>
+          <Title>FinTrak</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
           <DeviceLockImageURI>
           </DeviceLockImageURI>
-          <HasLarge>
-          </HasLarge>
+          <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />
-      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
     </ScreenResolutions>
   </App>
 </Deployment>

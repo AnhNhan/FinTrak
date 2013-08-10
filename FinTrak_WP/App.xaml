@@ -14,7 +14,7 @@
         <Color x:Key="ApplicationLayoutBackgroundColor">#2A2A2A</Color>
         <SolidColorBrush x:Key="ApplicationLayoutBackgroundBrush" Color="{StaticResource ApplicationLayoutBackgroundColor}" />
 
-        <sys:String x:Key="AppTileBackgroundImageString">/Assets/BgTiles/AppBgTile.jpg</sys:String>
+        <sys:String x:Key="AppTileBackgroundImageString">/Assets/BgTiles/debut_dark.png</sys:String>
 
         <Color x:Key="ApplicationLayoutForegroundColor">#FFFFFF</Color>
         <SolidColorBrush x:Key="ApplicationLayoutForegroundBrush" Color="{StaticResource ApplicationLayoutForegroundColor}" />

@@ -11,10 +11,15 @@ using System.Windows.Media.Imaging;
 namespace FinTrak_WP.Resources
 {
     // Created from http://www.robfe.com/2012/07/creating-tiled-backgrounds-in-metro-style-xaml-apps/
+    // With https://gist.github.com/ngbrown/5925335/06dada9095372bfc6af7d3ad1f6eb17ac3a90a3f applied
     // Tiles an image over the background
     public class TileCanvas : Canvas
     {
-        public static readonly DependencyProperty ImageSourceProperty = DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(TileCanvas), new PropertyMetadata(null, ImageSourceChanged));
+        public static readonly DependencyProperty ImageSourceProperty = DependencyProperty.Register(
+            "ImageSource",
+            typeof(ImageSource),
+            typeof(TileCanvas),
+            new PropertyMetadata(null, ImageSourceChanged));
 
         private Size lastActualSize;
 
@@ -25,8 +30,14 @@ namespace FinTrak_WP.Resources
 
         public ImageSource ImageSource
         {
-            get { return (ImageSource)GetValue(ImageSourceProperty); }
-            set { SetValue(ImageSourceProperty, value); }
+            get
+            {
+                return (ImageSource)GetValue(ImageSourceProperty);
+            }
+            set
+            {
+                SetValue(ImageSourceProperty, value);
+            }
         }
 
         private void OnLayoutUpdated(object sender, object o)
@@ -59,7 +70,13 @@ namespace FinTrak_WP.Resources
             var image = (Image)sender;
             image.ImageOpened -= ImageOnImageOpened;
             image.ImageFailed -= ImageOnImageFailed;
-            // Children.Add(new TextBlock { Text = exceptionRoutedEventArgs.ErrorMessage, Foreground = new SolidColorBrush(Colors.Red) });
+            Children.Add(
+                new TextBlock
+                {
+                    // Text = exceptionRoutedEventArgs.ErrorMessage,
+                    Text = "Could not load image",
+                    Foreground = new SolidColorBrush(Colors.Red)
+                });
         }
 
         private void ImageOnImageOpened(object sender, RoutedEventArgs routedEventArgs)
@@ -67,6 +84,7 @@ namespace FinTrak_WP.Resources
             var image = (Image)sender;
             image.ImageOpened -= ImageOnImageOpened;
             image.ImageFailed -= ImageOnImageFailed;
+            Children.Clear();
             Rebuild();
         }
 
@@ -86,20 +104,47 @@ namespace FinTrak_WP.Resources
                 return;
             }
 
-            Children.Clear();
+            if (ActualWidth == 0 || ActualHeight == 0)
+            {
+                return;
+            }
+
+            double currentTiledWidth = -1;
+            double currentTiledHeight = -1;
+            foreach (var child in this.Children.ToList().Where(c => c is Image).Cast<Image>())
+            {
+                int childTop = (int)Canvas.GetTop(child);
+                int childLeft = (int)Canvas.GetLeft(child);
+                if (childLeft >= ActualWidth)
+                {
+                    Children.Remove(child);
+                }
+                else if (childTop >= ActualHeight)
+                {
+                    Children.Remove(child);
+                }
+                else
+                {
+                    if (childLeft > currentTiledWidth) currentTiledWidth = childLeft;
+                    if (childTop > currentTiledHeight) currentTiledHeight = childTop;
+                }
+            }
+
             for (int x = 0; x < ActualWidth; x += width)
             {
                 for (int y = 0; y < ActualHeight; y += height)
                 {
-                    var image = new Image { Source = ImageSource };
-                    Canvas.SetLeft(image, x);
-                    Canvas.SetTop(image, y);
-                    Children.Add(image);
+                    if (x > currentTiledWidth || y > currentTiledHeight)
+                    {
+                        var image = new Image { Source = ImageSource };
+                        Canvas.SetLeft(image, x);
+                        Canvas.SetTop(image, y);
+                        Children.Add(image);
+                    }
                 }
             }
             Clip = new RectangleGeometry { Rect = new Rect(0, 0, ActualWidth, ActualHeight) };
         }
     }
-
 
 }

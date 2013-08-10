@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:fintrak_res="clr-namespace:FinTrak_WP.Resources">
 
     <!--Anwendungsressourcen-->
     <Application.Resources>
@@ -12,6 +13,8 @@
 
         <Color x:Key="ApplicationLayoutBackgroundColor">#2A2A2A</Color>
         <SolidColorBrush x:Key="ApplicationLayoutBackgroundBrush" Color="{StaticResource ApplicationLayoutBackgroundColor}" />
+
+        <sys:String x:Key="AppTileBackgroundImageString">/Assets/BgTiles/AppBgTile.jpg</sys:String>
 
         <Color x:Key="ApplicationLayoutForegroundColor">#FFFFFF</Color>
         <SolidColorBrush x:Key="ApplicationLayoutForegroundBrush" Color="{StaticResource ApplicationLayoutForegroundColor}" />

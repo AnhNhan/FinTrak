@@ -85,16 +85,16 @@ namespace FinTrak_WP
                 foreach (TransactionModel xact in xacts)
                 {
                     bool _added = false;
-                    if (xact.OriginIsAsset)
+                    if (xact.OriginIsAsset && xact.OriginId == asset.Id)
                     {
                         asset.AddTransaction(xact, true);
                         _added = true;
                     }
-                    if (xact.TargetIsAsset && !_added)
+                    if (xact.TargetIsAsset && xact.TargetId == asset.Id && !_added)
                     {
                         asset.AddTransaction(xact, false);
                     }
-                    else if (xact.TargetIsAsset)
+                    else if (xact.TargetIsAsset && xact.TargetId == asset.Id)
                     {
                         xact.Target = asset;
                     }

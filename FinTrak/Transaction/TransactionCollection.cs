@@ -17,5 +17,13 @@ namespace FinTrak.Transaction
 
         // for now, usused
         public AssetCollection AssetCollection { get; set; }
+
+        public List<TransactionModel> FindTransactionsForAsset(AssetModel asset)
+        {
+            return this.Where((TransactionModel transaction) =>
+            {
+                return (transaction.OriginId == asset.Id && transaction.OriginIsAsset) || (transaction.TargetId == asset.Id && transaction.TargetIsAsset);
+            }).ToList();
+        }
     }
 }

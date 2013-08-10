@@ -77,10 +77,7 @@ namespace FinTrak_WP
             // Link assets and transactions with each other
             foreach (AssetModel asset in Assets)
             {
-                List<TransactionModel> xacts = Transactions.Where((TransactionModel transaction) =>
-                {
-                    return (transaction.OriginId == asset.Id && transaction.OriginIsAsset) || (transaction.TargetId == asset.Id && transaction.TargetIsAsset);
-                }).ToList();
+                List<TransactionModel> xacts = Transactions.FindTransactionsForAsset(asset);
 
                 foreach (TransactionModel xact in xacts)
                 {

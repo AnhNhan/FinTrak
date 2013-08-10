@@ -4,14 +4,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:fintrak_res="clr-namespace:FinTrak_WP.Resources"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot">
-        <StackPanel VerticalAlignment="Top" Margin="{StaticResource PhoneTouchTargetOverhang}" MinWidth="432" toolkit:TiltEffect.IsTiltEnabled="True">
+    <Grid x:Name="LayoutRoot" Margin="0,6">
+        <fintrak_res:TileCanvas ImageSource="{Binding Source={StaticResource AppTileBackgroundImageString}}"/>
+        <StackPanel VerticalAlignment="Top" MinWidth="432" toolkit:TiltEffect.IsTiltEnabled="True" Margin="12,0,12,6">
             <TextBlock
                 Text="{Binding ITLabel,Mode=OneWay}"
                 Margin="0,2,2,2"

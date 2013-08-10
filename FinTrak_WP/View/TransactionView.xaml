@@ -4,15 +4,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:fintrak_res="clr-namespace:FinTrak_WP.Resources"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
     
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Margin="0,6">
 
-        <StackPanel VerticalAlignment="Top" Margin="{StaticResource PhoneTouchTargetOverhang}" MinWidth="432" toolkit:TiltEffect.IsTiltEnabled="True">
+        <fintrak_res:TileCanvas ImageSource="{Binding Source={StaticResource AppTileBackgroundImageString}}"/>
+        <StackPanel VerticalAlignment="Top" MinWidth="432" toolkit:TiltEffect.IsTiltEnabled="True" Margin="12,0,12,6">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -25,7 +27,6 @@
 
                 <TextBlock
                     Text="{Binding Amount,Mode=OneWay,StringFormat=\{0:C\}}"
-                    Margin="0,2,2,2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Foreground="{Binding AmountColor}"
@@ -34,40 +35,34 @@
                     Grid.Column="1" Grid.Row="0"/>
                 <TextBlock
                     Text="{Binding Label,Mode=OneWay}"
-                    Margin="0,2,2,2"
                     Style="{StaticResource PhoneTextExtraLargeStyle}"
-                    Grid.Column="0" Grid.Row="0"/>
+                    Grid.Column="0" Grid.Row="0" Margin="0"/>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
                     <TextBlock
                         Text="From "
                         Style="{StaticResource PhoneTextNormalStyle}"
-                        Margin="0,2,2,2"
-                            toolkit:SlideInEffect.LineIndex="1"/>
+                            toolkit:SlideInEffect.LineIndex="1" Margin="0"/>
                     <TextBlock
                         Text="{Binding Origin.ITLabel}"
                         Style="{StaticResource PhoneTextAccentStyle}"
-                        Margin="0,2,2,2"
-                        toolkit:SlideInEffect.LineIndex="3"/>
+                        toolkit:SlideInEffect.LineIndex="3" Margin="0"/>
                     <TextBlock
                         Text=" to "
                         Style="{StaticResource PhoneTextNormalStyle}"
-                        Margin="0,2,2,2"
-                        toolkit:SlideInEffect.LineIndex="1"/>
+                        toolkit:SlideInEffect.LineIndex="1" Margin="0"/>
                     <TextBlock
                         Text="{Binding Target.ITLabel}"
                         Style="{StaticResource PhoneTextAccentStyle}"
-                        Margin="0,2,2,2"
-                        toolkit:SlideInEffect.LineIndex="3"/>
+                        toolkit:SlideInEffect.LineIndex="3" Margin="0"/>
                 </StackPanel>
 
                 <TextBlock
                     Text="{Binding TransactionDate, StringFormat=\{0:d\}}"
                     Style="{StaticResource PhoneTextNormalStyle}"
-                    Margin="0,2,2,2"
                     toolkit:SlideInEffect.LineIndex="2"
                     HorizontalAlignment="Right"
-                    Grid.Column="1" Grid.Row="1"/>
+                    Grid.Column="1" Grid.Row="1" Margin="0"/>
             </Grid>
         </StackPanel>
 

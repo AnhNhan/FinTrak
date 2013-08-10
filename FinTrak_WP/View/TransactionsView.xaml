@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:fintral="clr-namespace:FinTrak_WP.View"
+    xmlns:fintrak="clr-namespace:FinTrak_WP.View"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -15,7 +15,7 @@
         <ListBox ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <fintral:TransactionView DataContext="{Binding}" />
+                    <fintrak:TransactionView DataContext="{Binding}" Tap="TransactionView_Tap" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

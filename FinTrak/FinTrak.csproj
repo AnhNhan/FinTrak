@@ -87,6 +87,7 @@
     <Compile Include="Asset\AssetCollection.cs" />
     <Compile Include="Asset\AssetModel.cs" />
     <Compile Include="Asset\AssetType.cs" />
+    <Compile Include="Budget\BudgetCollection.cs" />
     <Compile Include="Budget\BudgetModel.cs" />
     <Compile Include="FinTrakDatabaseRepository.cs" />
     <Compile Include="FinTrakDataContext.cs" />

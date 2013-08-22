@@ -15,11 +15,16 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneAccentColor}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBarIconButton x:Key="cancelButton" IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="cancel" Click="cancel_Click"/>
+        
+        <shell:ApplicationBarIconButton x:Key="deleteButton" IconUri="/Assets/AppBar/delete.png" Text="delete" Click="delete_Click"/>
+    </phone:PhoneApplicationPage.Resources>
     
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/save.png" Text="save" Click="save_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="cancel" Click="cancel_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

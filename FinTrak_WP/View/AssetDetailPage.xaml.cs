@@ -38,5 +38,15 @@ namespace FinTrak_WP.View
 
             DataContext = Asset;
         }
+
+        private void edit_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/AssetEditPage.xaml?assetId=" + Asset.Id, UriKind.RelativeOrAbsolute));
+        }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

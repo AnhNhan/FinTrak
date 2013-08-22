@@ -15,6 +15,13 @@
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneAccentColor}">
 
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" Text="edit" Click="edit_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png" Text="delete" Click="delete_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource ApplicationLayoutBackgroundBrush}">
         <Grid.RowDefinitions>

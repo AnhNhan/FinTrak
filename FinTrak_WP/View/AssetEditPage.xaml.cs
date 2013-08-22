@@ -36,6 +36,14 @@ namespace FinTrak_WP.View
                 AssetModel.GetTypeNameForAssetTypeId(AssetType.Prepaid),
             };
             typePicker.ItemsSource = typeStrings;
+
+            this.Loaded += AssetEditPage_Loaded;
+        }
+
+        void AssetEditPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ApplicationBar.Buttons.Add(Resources["cancelButton"]);
+            this.Loaded -= AssetEditPage_Loaded;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -45,7 +53,23 @@ namespace FinTrak_WP.View
                 uint assetId = uint.Parse(NavigationContext.QueryString["assetId"]);
                 asset = MainPage.Assets.Where(_asset => _asset.Id == assetId).First();
                 _didNotExist = false;
+
+                this.Loaded += OnNavigation_Loaded;
             }
+        }
+
+        private void OnNavigation_Loaded(object sender, RoutedEventArgs e)
+        {
+            ApplicationBar.Buttons.Add(Resources["deleteButton"]);
+            assignAsset(asset);
+
+            this.Loaded -= OnNavigation_Loaded;
+        }
+
+        private void assignAsset(AssetModel _asset)
+        {
+            assetLabel.Text = _asset.ITLabel;
+            typePicker.SelectedIndex = (int)Math.Log((int)_asset.TypeId, 2) + 1;
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -105,6 +129,11 @@ namespace FinTrak_WP.View
             }
 
             NavigationService.GoBack();
+        }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Delete is not supported yet!");
         }
     }
 }

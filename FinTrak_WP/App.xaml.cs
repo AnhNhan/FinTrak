@@ -35,6 +35,9 @@ namespace FinTrak_WP
             // Initialisierung der Sprachanzeige
             InitializeLanguage();
 
+            // Force dark theme
+            ThemeManager.ToDarkTheme();
+
             // Während des Debuggens Profilerstellungsinformationen zur Grafikleistung anzeigen.
             if (Debugger.IsAttached)
             {

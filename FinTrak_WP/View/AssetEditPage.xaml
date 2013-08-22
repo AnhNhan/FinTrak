@@ -14,7 +14,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PhoneAccentColor}">
+    Style="{StaticResource AppDefaultPageStyle}">
 
     <phone:PhoneApplicationPage.Resources>
         <shell:ApplicationBarIconButton x:Key="cancelButton" IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="cancel" Click="cancel_Click"/>

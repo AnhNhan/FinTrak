@@ -20,6 +20,12 @@
         <SolidColorBrush x:Key="ApplicationLayoutForegroundBrush" Color="{StaticResource ApplicationLayoutForegroundColor}" />
 
         <local:LocalizedStrings xmlns:local="clr-namespace:FinTrak_WP" x:Key="LocalizedStrings"/>
+
+        <Style x:Key="AppDefaultPageStyle" TargetType="phone:PhoneApplicationPage">
+            <Setter Property="shell:SystemTray.BackgroundColor" Value="{StaticResource PhoneAccentColor}" />
+            <!--<Setter Property="shell:SystemTray.ForegroundColor" Value="White" />-->
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

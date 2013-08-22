@@ -13,7 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PhoneAccentColor}">
+    Style="{StaticResource AppDefaultPageStyle}">
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>

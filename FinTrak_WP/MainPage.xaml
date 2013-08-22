@@ -14,7 +14,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PhoneAccentColor}">
+    Style="{StaticResource AppDefaultPageStyle}">
 
     <phone:PhoneApplicationPage.Resources>
         <shell:ApplicationBarIconButton x:Key="assetsAppBarButton" x:Name="addAsset" IconUri="/Assets/AppBar/add.png" Text="add asset" Click="AddAsset_Click" />

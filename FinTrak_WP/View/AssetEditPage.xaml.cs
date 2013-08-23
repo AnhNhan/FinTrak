@@ -51,7 +51,7 @@ namespace FinTrak_WP.View
             if (NavigationContext.QueryString.ContainsKey("assetId"))
             {
                 uint assetId = uint.Parse(NavigationContext.QueryString["assetId"]);
-                asset = MainPage.Assets.Where(_asset => _asset.Id == assetId).First();
+                asset = App.Storage.Assets.Where(_asset => _asset.Id == assetId).First();
                 _didNotExist = false;
 
                 this.Loaded += OnNavigation_Loaded;
@@ -125,7 +125,11 @@ namespace FinTrak_WP.View
 
             if (_didNotExist)
             {
-                MainPage.Assets.Add(asset);
+                App.Storage.Assets.Add(asset);
+            }
+            else
+            {
+                App.Storage.SaveAll();
             }
 
             NavigationService.GoBack();

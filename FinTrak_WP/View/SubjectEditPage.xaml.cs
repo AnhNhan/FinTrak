@@ -55,7 +55,7 @@ namespace FinTrak_WP.View
 
             if (_didNotExist)
             {
-                MainPage.Subjects.Add(subject);
+                App.Storage.Subjects.Add(subject);
             }
 
             NavigationService.GoBack();

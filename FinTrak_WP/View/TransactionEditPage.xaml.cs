@@ -99,7 +99,7 @@ namespace FinTrak_WP.View
                     _target.AddTransaction(Transaction, false);
                 }
 
-                MainPage.Transactions.Add(Transaction);
+                App.Storage.Transactions.Add(Transaction);
             }
 
             NavigationService.GoBack();

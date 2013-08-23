@@ -86,11 +86,11 @@ namespace FinTrak_WP.View
         {
             if (IsAsset)
             {
-                _targetsLoaded = new List<ITransactionTarget>(MainPage.Assets.ToArray());
+                _targetsLoaded = new List<ITransactionTarget>(App.Storage.Assets.ToArray());
             }
             else
             {
-                _targetsLoaded = new List<ITransactionTarget>(MainPage.Subjects.ToArray());
+                _targetsLoaded = new List<ITransactionTarget>(App.Storage.Subjects.ToArray());
             }
             xactTargetPicker.ItemsSource = _targetsLoaded;
         }

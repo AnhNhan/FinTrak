@@ -27,7 +27,7 @@ namespace FinTrak_WP.View
             if (NavigationContext.QueryString.ContainsKey("assetId"))
             {
                 uint assetId = uint.Parse(NavigationContext.QueryString["assetId"]);
-                Asset = MainPage.Assets.Where(_asset => _asset.Id == assetId).First();
+                Asset = App.Storage.Assets.Where(_asset => _asset.Id == assetId).First();
             }
 
             if (Asset == null)
@@ -42,6 +42,7 @@ namespace FinTrak_WP.View
         private void edit_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/View/AssetEditPage.xaml?assetId=" + Asset.Id, UriKind.RelativeOrAbsolute));
+            DataContext = Asset;
         }
 
         private void delete_Click(object sender, EventArgs e)

@@ -8,10 +8,19 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using FinTrak_WP.Resources;
 
+using FinTrak;
+using FinTrak.Asset;
+using FinTrak.Budget;
+using FinTrak.Subject;
+using FinTrak.Transaction;
+
 namespace FinTrak_WP
 {
     public partial class App : Application
     {
+        private static StorageManager _storage;
+        public static StorageManager Storage { get { return _storage; } }
+
         /// <summary>
         /// Bietet einen einfachen Zugriff auf den Stammframe der Phone-Anwendung.
         /// </summary>
@@ -55,6 +64,8 @@ namespace FinTrak_WP
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            _storage = new StorageManager();
+            _storage.InitializeData();
         }
 
         // Code, der beim Starten der Anwendung ausgeführt werden soll (z. B. über "Start")
@@ -73,14 +84,14 @@ namespace FinTrak_WP
         // Dieser Code wird beim Schließen der Anwendung nicht ausgeführt
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-            MainPage.SaveAll();
+            Storage.SaveAll();
         }
 
         // Code, der beim Schließen der Anwendung ausgeführt wird (z. B. wenn der Benutzer auf "Zurück" klickt)
         // Dieser Code wird beim Deaktivieren der Anwendung nicht ausgeführt
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            MainPage.SaveAll();
+            Storage.SaveAll();
         }
 
         // Code, der bei einem Navigationsfehler ausgeführt wird

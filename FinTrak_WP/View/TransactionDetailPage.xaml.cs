@@ -26,7 +26,7 @@ namespace FinTrak_WP.View
             if (NavigationContext.QueryString.ContainsKey("transactionId"))
             {
                 uint assetId = uint.Parse(NavigationContext.QueryString["transactionId"]);
-                Transaction = MainPage.Transactions.Where(_transaction => _transaction.Id == assetId).First();
+                Transaction = App.Storage.Transactions.Where(_transaction => _transaction.Id == assetId).First();
             }
 
             if (Transaction == null)

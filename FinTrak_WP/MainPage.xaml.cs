@@ -22,25 +22,21 @@ namespace FinTrak_WP
     {
         private static bool _dataLoaded = false;
 
-        private List<ApplicationBarIconButton> AppBarButtons;
-
-        private static FinTrakDatabaseRepository dbRepo = new FinTrakDatabaseRepository();
-
-        public static AssetCollection Assets { get; private set; }
-        public static TransactionCollection Transactions { get; private set; }
-        public static SubjectCollection Subjects { get; private set; }
-
         private static NavigationService _navigator;
         public static NavigationService Navigator { get { return _navigator; } }
+
+        StorageManager Storage;
+
+        private List<ApplicationBarIconButton> AppBarButtons;
 
         // Konstruktor
         public MainPage()
         {
+            Storage = App.Storage;
             InitializeComponent();
             AppBarButtons = new List<ApplicationBarIconButton>();
             if (!_dataLoaded)
             {
-                this.Loaded += InitializeData;
                 this.Loaded += InitializeViews;
                 this.Loaded += (s, e) => { _navigator = NavigationService; };
             }
@@ -49,107 +45,22 @@ namespace FinTrak_WP
         private void InitializeViews(object sender, RoutedEventArgs e)
         {
             var assetView = new View.AssetsView();
-            assetView.DataContext = Assets;
+            assetView.DataContext = Storage.Assets;
             uiRoot_pivot_assets.Content = assetView;
 
             var transactionsView = new View.TransactionsView();
-            transactionsView.DataContext = Transactions;
+            transactionsView.DataContext = Storage.Transactions;
             uiRoot_pivot_transactions.Content = transactionsView;
 
             var subjectView = new View.SubjectsView();
-            subjectView.DataContext = Subjects;
+            subjectView.DataContext = Storage.Subjects;
             uiRoot_pivot_subjects.Content = subjectView;
         }
 
-        #region data stuff
-
-        async void InitializeData(object sender, RoutedEventArgs e)
+        private void clearStorage_Click(object sender, EventArgs e)
         {
-            await dbRepo.Initialize();
-
-            InitializeAssets();
-            InitializeTransactions();
-            InitializeSubjects();
-
-            _dataLoaded = true;
-            this.Loaded -= InitializeData;
-
-            // Link assets and transactions with each other
-            foreach (AssetModel asset in Assets)
-            {
-                List<TransactionModel> xacts = Transactions.FindTransactionsForAsset(asset);
-
-                foreach (TransactionModel xact in xacts)
-                {
-                    bool _added = false;
-                    if (xact.OriginIsAsset && xact.OriginId == asset.Id)
-                    {
-                        asset.AddTransaction(xact, true);
-                        _added = true;
-                    }
-                    if (xact.TargetIsAsset && xact.TargetId == asset.Id && !_added)
-                    {
-                        asset.AddTransaction(xact, false);
-                    }
-                    else if (xact.TargetIsAsset && xact.TargetId == asset.Id)
-                    {
-                        xact.Target = asset;
-                    }
-                }
-            }
-
-            foreach (SubjectModel subject in Subjects)
-            {
-                List<TransactionModel> xacts = Transactions.Where((TransactionModel transaction) =>
-                {
-                    return (transaction.OriginId == subject.Id && !transaction.OriginIsAsset) || (transaction.TargetId == subject.Id && !transaction.TargetIsAsset);
-                }).ToList();
-
-                foreach (TransactionModel xact in xacts)
-                {
-                    if (!xact.TargetIsAsset)
-                    {
-                        xact.Target = subject;
-                    }
-                    if (!xact.OriginIsAsset)
-                    {
-                        xact.Origin = subject;
-                    }
-                }
-            }
+            Storage.ClearAll();
         }
-
-        void InitializeAssets()
-        {
-            Assets = new AssetCollection(dbRepo.LoadAssets());
-
-            Assets.CollectionChanged += (s1, e1) =>
-            {
-                dbRepo.SaveAssets(Assets.ToList());
-            };
-        }
-
-        void InitializeSubjects()
-        {
-            Subjects = new SubjectCollection(dbRepo.LoadSubjects());
-
-            Subjects.CollectionChanged += (s1, e1) =>
-            {
-                dbRepo.SaveSubjects(Subjects.ToList());
-            };
-        }
-
-        void InitializeTransactions()
-        {
-            Transactions = new TransactionCollection(dbRepo.LoadTransactions());
-
-            Transactions.CollectionChanged += (s1, e1) =>
-            {
-                dbRepo.SaveTransactions(Transactions.ToList());
-            };
-        }
-
-        #endregion
 
         private void AddAsset_Click(object sender, EventArgs e)
         {
@@ -213,19 +124,6 @@ namespace FinTrak_WP
                 ApplicationBar.Mode = ApplicationBarMode.Minimized;
                 ApplicationBar.Opacity = 0.2;
             }
-        }
-
-        private void clearStorage_Click(object sender, EventArgs e)
-        {
-            dbRepo.ClearStorage();
-            Assets.Clear();
-            Transactions.Clear();
-            Subjects.Clear();
-        }
-
-        public static void SaveAll()
-        {
-            dbRepo.SaveGenerically();
         }
     }
 }
